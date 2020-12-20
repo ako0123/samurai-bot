@@ -1,1 +1,1 @@
-worker: python katipash.py $PORT
+worker: python on_shop.py $PORT
