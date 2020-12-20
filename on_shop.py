@@ -1,4 +1,4 @@
-import telebot
+import telebot # pyTelegramBotAPI 
 from telebot import types
 token = '1289131326:AAGXIawwewqt70_8M535p22mjnQXQE03mYc'# bot father token telegram
 bot = telebot.TeleBot(token) #creat a bot 
