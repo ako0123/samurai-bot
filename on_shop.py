@@ -11,7 +11,7 @@ food5 = types.InlineKeyboardButton("Сет Куранты", callback_data='food5
 food6 = types.InlineKeyboardButton("Сет Сета-Клаус", callback_data='food6')
 food7 = types.InlineKeyboardButton("Сет Алматы - любовь моя", callback_data='food7')
 food8 = types.InlineKeyboardButton("Сет Горячая штучка", callback_data='food8')
-markup.add(food1, food2, food3, food4, food5, food6, food7, food8)
+markup.add(food1, food2, food3, food4, food5, food6, food7, food8)# с помощью add мы добавляем кнопки 
 @bot.message_handler(commands=['myorder'])  # работает если вызвали команду myorder
 def order(message):
     bot.send_message(message.chat.id, text='Рахмет за ваш заказ, отправьте пожалуйста ваш адрес и мы отправим к вам курьера')# отправка сообщение
@@ -44,7 +44,7 @@ def data (call):
             bot.send_message(call.message.chat.id,text='Прмидор, салат айсберг, огурец, перец болгарский,авокадо, нори, рис.',
                              reply_markup=markup1)
         elif call.data == 'food3':
-            bot.send_message(call.message.chat.id, text='Суши унаги \n 399 тг')
+            bot.send_message(call.message.chat.id, text='Суши унаги \n 399 тг') #.send_message метод для отправки сообщений 
             food3 = open('food3.jpg', 'rb')
             bot.send_photo(call.message.chat.id, food3)
             bot.send_message(call.message.chat.id,text='Угорь, рис, нори.',
@@ -93,20 +93,20 @@ from collections import defaultdict
 order = defaultdict(lambda: {}) # создается словарь
 
 def update_order(user_id, key, value):      # добавляется заказы от людей
-   order[user_id][key] = value          #{'ako':{'sushi':'234', 'cola':'150'}, 'kazybek':{'set':'1200'}}
+   order[user_id][key] = value          #order={'ako':{'sushi':'234', 'cola':'150'}, 'kazybek':{'set':'1200'}}
 
 def get_order(user_id):
     return order[user_id]    # закзаз юзера order['ako'] return {'sushi':234, 'cola':150}
 
 def get_bill(user_id):      
     price=order[user_id].values()# внутри price сохраняем из юзера все значении  это у нас  234 и 150. Потому что у нас вложенный словарь   {'ako':{'sushi':'234', 'cola':'150'},
-    sum=0 
-    for i in price:
-        sum=int(i)+sum
+    sum=0 # просто переменый
+    for i in price: # цикл который перебирает все элементы price,  price это список
+        sum=int(i)+sum   # чтобы сделать из строки цифру мы используем int(i)
     return sum # возвращает сумму заказа 
 
 
-@bot.message_handler(content_types=['location'])#если отправляет локацию выполняется
+@bot.message_handler(content_types=['location'])#если отправляет локацию выполняется next function
 def loc(message):
     bot.send_message(message.chat.id,text='Спасибо, ожидайте ваш заказ')
     bot.send_message(message.chat.id, text='Курьер: Аслан, 877745464')
